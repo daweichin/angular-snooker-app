@@ -1,0 +1,51 @@
+<main>
+  <h1>Snooker Score App</h1>
+  <div class="row-container current">
+    <h2>Currently Player {{ currentPlayer.id }}'s turn</h2>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="togglePlayer()">
+    End Turn
+  </button>
+
+  <div *ngIf="numRedsLeft == 0">
+    <p>No more Reds left on the table!</p>
+  </div>
+
+  <p>The Number of Reds Left is {{ numRedsLeft }}</p>
+  <p>The Maximum amount of points left on the table is {{ maxPoints }}</p>
+
+  <h3>The history is: {{ history }}</h3>
+
+  <div class="row-container">
+    <h3>
+      <input matInput placeholder="Player 1 Name" /> Score: {{ player1.score }}
+    </h3>
+
+    <h3>
+      <input matInput placeholder="Player 2 Name" /> Score {{ player2.score }}
+    </h3>
+  </div>
+
+  <div class="score-container">
+    <button
+      *ngFor="let value of values"
+      [style.background-color]="value[1]"
+      (click)="addScore(value[0])"
+    >
+      {{ value[0] }}
+    </button>
+  </div>
+
+  <div class="col-container">
+    <button mat-raised-button color="warn" (click)="resetGame()">
+      Reset Game
+    </button>
+    <button mat-raised-button color="warn" (click)="undoTurn()">
+      Undo Turn
+    </button>
+    <button mat-raised-button routerLink="/details" color="warn">
+      Game Insights
+    </button>
+  </div>
+</main>
